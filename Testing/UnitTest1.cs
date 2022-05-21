@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CyrilicTransformer;
+using CyrillicTransformerV2;
 
 
 namespace TestProject1
@@ -8,7 +8,7 @@ namespace TestProject1
     public class UnitTest1
     {
         string _text = "Анко Разпопчето се спряпаше от срам, колчем срещнеше човек в панталони от черно сукно. \n -Като беше постоянно слисан с търговските си работи, Марко само на трапезата виждаше народа си вкуп и тогава допълняше възпитанието му по доста своеобразен начин";
-        CyrilicTransformer.ConverterV2 _converter = new CyrilicTransformer.ConverterV2();
+        CyrillicTransformerV2.ConverterV2 _converter = new CyrillicTransformerV2.ConverterV2();
         
         [TestMethod]
         public void Test()
