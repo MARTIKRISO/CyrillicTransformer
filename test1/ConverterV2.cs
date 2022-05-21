@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace test1
 {
-    class ConverterV2
+    public class ConverterV2
     {
         Dictionary<char, string> MAP;
         Dictionary<string, char> REVMAP;
-        List<char> ALPHABET = new List<char>() { 'а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ь', 'ю', 'я', '?', '!', '.', ' ' };
-        List<string> TRANSCRIPTION = new List<string>() { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "00"};
+        List<char> ALPHABET = new List<char>() { 'а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ь', 'ю', 'я', '?', '!', '.', ',', '-', '\n', ' ' };
+        List<string> TRANSCRIPTION = new List<string>() { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "00"};
         public ConverterV2()
         {
             var map = new Dictionary<char, string>();
@@ -41,6 +41,12 @@ namespace test1
                     result += equiv;
                     Console.WriteLine("Appended {0} equivelent: {1}", letter, equiv);
                 }
+                else if (Char.IsNumber(lowletter))
+                {
+                    string toadd = String.Concat("[", lowletter, "]");
+                    result += toadd;
+                    Console.WriteLine("Appended {0} equivelent: {1}", lowletter, toadd);
+                }
                 else
                 {
                     throw new Exception(String.Format("No equivelent for letter [{0}]", lowletter));
@@ -58,6 +64,12 @@ namespace test1
             for(int i = 0; i < text.Length; i += 3)
             {
                 string inputstr = text.Substring(i, 3);
+                if (inputstr[0].ToString() == "[")
+                {
+                    result += inputstr[1];
+                    Console.WriteLine("Appended {0} equivelent: {1}", inputstr, inputstr[1]);
+                    continue;
+                }
                 bool capital = CharToBool(inputstr[0]);
                 string lettercode = String.Concat(inputstr[1], inputstr[2]);
 
